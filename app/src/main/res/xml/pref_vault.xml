@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Lock Screen Password"
+        android:key="pref_key_storage_settings">
+        <EditTextPreference
+            android:key="pub_pass"
+            android:summary="Public Password"
+            android:title="Public Password"
+            android:defaultValue="1234" />
+
+        <EditTextPreference
+            android:key="pri_pass"
+            android:summary="Private Password"
+            android:title="Private Password"
+            android:defaultValue="1234" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
