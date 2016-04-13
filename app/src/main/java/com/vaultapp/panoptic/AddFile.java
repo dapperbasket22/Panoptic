@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class AddFile extends AppCompatActivity implements AdapterView.OnItemClickListener,
         AbsListView.MultiChoiceModeListener {
-    ListView addFile;
+    GridView addFile;
     FileListAdapter adapterAdd;
     File base;
     SharedPreferences addPref;
@@ -34,14 +34,14 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_file);
         //Initialize
-        addFile = (ListView) findViewById(R.id.add_file);
+        addFile = (GridView) findViewById(R.id.add_file);
         base = Environment.getExternalStorageDirectory();
         addPref = PreferenceManager.getDefaultSharedPreferences(this);
         addEdit = addPref.edit();
 
         fillList(base);
         addFile.setOnItemClickListener(this);
-        addFile.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        addFile.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
         addFile.setMultiChoiceModeListener(this);
 
     }

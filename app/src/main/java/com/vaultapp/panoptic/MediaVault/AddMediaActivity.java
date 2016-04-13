@@ -15,26 +15,29 @@ import android.widget.GridView;
 
 import com.vaultapp.panoptic.R;
 
+
 public class AddMediaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
         AbsListView.MultiChoiceModeListener{
 
     GridView gridView;
     Cursor cursor;
     int flag;
-    MediaAdapter mediaAdapter; //Album Adapter
+    MediaAdapter mediaAdapter,adapter; //Album Adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_media);
+
         gridView = (GridView) findViewById(R.id.addMedia);
-        flag = 0;
+        flag = 0; // Folder View
+
         //Query Table
         String[] projection = {MediaStore.Images.Media._ID,
                 MediaStore.Images.Media.BUCKET_ID,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
                 MediaStore.Images.Media.DATA};
-        String groupBy =  "2) GROUP BY 2,(3";
+        String groupBy =  "2) GROUP BY 2,(3";   // To get folder only
         cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 projection, groupBy, null, null); //Get content
         mediaAdapter = new MediaAdapter(this,cursor,0);
@@ -85,7 +88,7 @@ public class AddMediaActivity extends AppCompatActivity implements AdapterView.O
                     MediaStore.Images.Media.DATA };
             cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     projection,searchParam,null,null);
-            MediaAdapter adapter = new MediaAdapter(this,cursor,1);
+            adapter = new MediaAdapter(this,cursor,1);
             gridView.setAdapter(adapter);
         }
     }

@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.vaultapp.panoptic.MainActivity;
+import com.vaultapp.panoptic.MediaVault.MediaVaultActivity;
 import com.vaultapp.panoptic.R;
 
 /**
@@ -49,7 +49,7 @@ public class SetPassFragment extends Fragment {
                 if (boom(pubPin,priPin,priText)) {
                     edit.putBoolean("first_install", false);
                     edit.commit();
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    startActivity(new Intent(getActivity(), MediaVaultActivity.class));
                     //Main activity of the app
                     getActivity().finish();
                 }

@@ -14,12 +14,14 @@ public class MediaData {
     int flag;
     MediaData(Cursor cursor,int t1,int t2, int flag){
         this.flag = flag;
-        icon = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(cursor.getString(t1)), 120, 120);
+        icon = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(cursor.getString(t1)), 120, 120); //Thumbnail
         if(flag==0){
-            File temp = new File(cursor.getString(t1));
-            data = new File(temp.getParent());
+            // For presenting media folders
+            File temp = new File(cursor.getString(t1)); // File Data
+            data = new File(temp.getParent()); // Extracting folder name
         } else {
-            data = new File(cursor.getString(t1));
+            // Files in the folder
+            data = new File(cursor.getString(t1));  // File name
         }
         name = cursor.getString(t2);
     }

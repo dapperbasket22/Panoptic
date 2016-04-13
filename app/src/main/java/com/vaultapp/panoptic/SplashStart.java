@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.vaultapp.panoptic.FirstInstall.FirstActivity;
+import com.vaultapp.panoptic.MediaVault.MediaVaultActivity;
 
 public class SplashStart extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class SplashStart extends AppCompatActivity {
                 if(val){
                     startActivity(new Intent(SplashStart.this, FirstActivity.class));
                 } else {
-                    startActivity(new Intent(SplashStart.this, MainActivity.class));
+                    startActivity(new Intent(SplashStart.this,MediaVaultActivity.class));
                 }
 
                 // close this activity

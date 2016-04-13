@@ -1,8 +1,10 @@
 package com.vaultapp.panoptic.MediaVault;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,14 +12,28 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AbsListView;
+import android.widget.GridView;
+import android.widget.Toast;
 
+import com.vaultapp.panoptic.AddFile;
+import com.vaultapp.panoptic.DisplayData;
+import com.vaultapp.panoptic.FileListAdapter;
+import com.vaultapp.panoptic.LockScreen.LockService;
 import com.vaultapp.panoptic.R;
+import com.vaultapp.panoptic.VaultSetting;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MediaVaultActivity extends AppCompatActivity {
 
@@ -30,7 +46,10 @@ public class MediaVaultActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    public SharedPreferences vaultPref;
+    public static SharedPreferences.Editor vaultEdit;
+    Set<String> temp;
+    public static ArrayList<String> data,image_ar,video_ar;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -51,20 +70,48 @@ public class MediaVaultActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        startService(new Intent(this, LockService.class));
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        vaultPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        vaultEdit = vaultPref.edit();
+        updateData();
+
+        final Intent intent = new Intent(this,AddFile.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(intent));
             }
         });
 
     }
 
+    void updateData(){
+        temp = vaultPref.getStringSet("vault_private",new HashSet<String>());
+        data = new ArrayList<>();
+        image_ar = new ArrayList<>();
+        video_ar = new ArrayList<>();
+
+        for(String s : temp){
+            data.add(s);
+            if(s.endsWith(".png") || s.endsWith(".jpg") || s.endsWith(".jpeg")){
+                image_ar.add(s);
+            }else if (s.endsWith(".mkv") || s.endsWith(".flv") || s.endsWith(".avi") || s.endsWith(".mp4")){
+                video_ar.add(s);
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        updateData();
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,6 +129,8 @@ public class MediaVaultActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this,VaultSetting.class);
+            startActivity(intent);
             return true;
         }
 
@@ -91,11 +140,15 @@ public class MediaVaultActivity extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+
+    public static class PlaceholderFragment extends Fragment implements AbsListView.MultiChoiceModeListener {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
+        FileListAdapter adapterVault;
+        GridView imgList;
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }
@@ -104,17 +157,98 @@ public class MediaVaultActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance() {
-            return new PlaceholderFragment();
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_image_vault, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format));
+
+            imgList = (GridView) rootView.findViewById(R.id.imageGridView);
+            imgList.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+            imgList.setMultiChoiceModeListener(this);
+
+            fill();
             return rootView;
+        }
+
+        @Override
+        public void onResume() {
+            fill();
+            super.onResume();
+        }
+        void fill(){
+            switch(getArguments().getInt(ARG_SECTION_NUMBER)){
+                case 0 :
+                    adapterVault = new FileListAdapter(getContext(),image_ar);
+                    break;
+                case 1 :
+                    adapterVault = new FileListAdapter(getContext(),video_ar);
+                    break;
+                case 2 :
+                    adapterVault = new FileListAdapter(getContext(),data);
+                    break;
+                default : break;
+            }
+            imgList.setAdapter(adapterVault);
+        }
+
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.view_file_menu, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.menu_remove:
+                    // Get selected items
+                    SparseBooleanArray selected = imgList.getCheckedItemPositions();
+                    for(int i=(selected.size()-1); i>=0;i--){
+                        if(selected.valueAt(i)){
+                            DisplayData d = (DisplayData) adapterVault.getItem(selected.keyAt(i));
+                            adapterVault.remove(d);
+                            data.remove(d.source+"/"+d.name);
+                            Toast.makeText(getContext(), d.source+"/"+d.name, Toast.LENGTH_SHORT).show();
+                            // Remove file from vault
+                        }
+                    }
+                    // Update list of hidden files
+                    Set<String> putData = new HashSet<>();
+                    for(String d : data){
+                        putData.add(d);
+                    }
+                    vaultEdit.putStringSet("vault_private",putData);
+                    vaultEdit.commit();
+                    Toast.makeText(getContext(), "Removed from vault", Toast.LENGTH_SHORT).show();
+                    mode.finish(); // Action picked, so close the CAB
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+
         }
     }
 
@@ -132,7 +266,7 @@ public class MediaVaultActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance();
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override
@@ -149,9 +283,10 @@ public class MediaVaultActivity extends AppCompatActivity {
                 case 1:
                     return "Videos";
                 case 2:
-                    return "Music";
+                    return "All Files";
             }
             return null;
         }
     }
+
 }

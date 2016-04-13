@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class FileListAdapter extends BaseAdapter {
             }
         }
     }
-    FileListAdapter(Context context,ArrayList<String> list){
+    public FileListAdapter(Context context, ArrayList<String> list){
         fileData = new ArrayList<>();
         this.context = context;
         for(String s : list){
@@ -54,7 +56,7 @@ public class FileListAdapter extends BaseAdapter {
 
         if(row==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = layoutInflater.inflate(R.layout.list_item,parent,false);
+            row = layoutInflater.inflate(R.layout.list_item_grid,parent,false);
             holder = new MyViewHolder(row);
             row.setTag(holder);
         } else {
@@ -62,19 +64,28 @@ public class FileListAdapter extends BaseAdapter {
         }
         DisplayData temp = fileData.get(position);
         holder.file_name.setText(temp.name);
-        holder.file_source.setText(temp.source);
+        if(temp.dir){
+            holder.icon.setImageResource(R.drawable.ic_folder);
+        }else {
+            if(temp.icon == null){
+                holder.icon.setImageResource(R.drawable.ic_file);
+            }else{
+                holder.icon.setImageBitmap(temp.icon);
+            }
+        }
         return row;
     }
 
     class MyViewHolder {
-        TextView file_name,file_source;
+        TextView file_name;
+        ImageView icon;
         MyViewHolder(View view){
-            file_name = (TextView) view.findViewById(R.id.item_name);
-            file_source = (TextView) view.findViewById(R.id.item_subtext);
+            file_name = (TextView) view.findViewById(R.id.media_name);
+            icon = (ImageView) view.findViewById(R.id.media_icon);
         }
     }
 
-    void remove(DisplayData data){
+    public void remove(DisplayData data){
         fileData.remove(data);
         File f = new File(data.source,data.name);
         if (f.isHidden()){

@@ -25,7 +25,7 @@ public class LockScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_screen);
-        makeFullScreen();
+        //makeFullScreen();
         homeKeyLocker = new HomeKeyLocker();
 
         ImageView button = (ImageView) findViewById(R.id.unlock);
@@ -37,7 +37,8 @@ public class LockScreenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 homeKeyLocker.unlock();
                 startActivity(intent);
-                android.os.Process.killProcess(android.os.Process.myPid());
+                //android.os.Process.killProcess(android.os.Process.myPid());
+                finish();
             }
         });
 
