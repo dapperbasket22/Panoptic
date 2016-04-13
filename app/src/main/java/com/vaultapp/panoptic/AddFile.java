@@ -84,7 +84,9 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_add:
+                //Get selected items
                 SparseBooleanArray selected = addFile.getCheckedItemPositions();
+                //Get previously hidden files
                 Set<String> temp = addPref.getStringSet("vault_private", new HashSet<String>());
                 Boolean flag = true;
                 addData = new HashSet<>();
@@ -95,6 +97,7 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
                     }
                     addData.add(s);
                 }
+                // Update hidden files
                 for(int i=0; i<selected.size();i++){
                     if(selected.valueAt(i)){
                         DisplayData d = (DisplayData) adapterAdd.getItem(selected.keyAt(i));

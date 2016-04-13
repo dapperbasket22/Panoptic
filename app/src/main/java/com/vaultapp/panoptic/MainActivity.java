@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     }
 
     void fill(){
+        //Get hidden files
         Set<String> temp = vaultPref.getStringSet("vault_private",new HashSet<String>());
         ArrayList<String> data = new ArrayList<>();
         for(String s : temp){
@@ -117,13 +118,16 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_remove:
+                // Get selected items
                 SparseBooleanArray selected = vaultFiles.getCheckedItemPositions();
                 for(int i=(selected.size()-1); i>=0;i--){
                     if(selected.valueAt(i)){
                         DisplayData d = (DisplayData) adapterVault.getItem(selected.keyAt(i));
                         adapterVault.remove(d);
+                        // Remove file from vault
                     }
                 }
+                // Update list of hidden files
                 ArrayList<DisplayData> temp = adapterVault.getList();
                 Set<String> putData = new HashSet<>();
                 for(DisplayData d : temp){

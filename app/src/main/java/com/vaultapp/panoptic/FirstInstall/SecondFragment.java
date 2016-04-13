@@ -29,10 +29,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second, container, false);
+
         Button over = (Button) view.findViewById(R.id.screenButton);
         Button nxtlock = (Button) view.findViewById(R.id.nxtlock);
+
         over.setOnClickListener(this);
         nxtlock.setOnClickListener(this);
+
         return view;
     }
 
@@ -40,11 +43,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.screenButton :
+                // Get to the security settings
                 startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
                 break;
             case R.id.nxtlock :
                 final EnableNotFragment enableNotFragment = new EnableNotFragment();
                 final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                //Enable notification fragment
                 transaction.replace(R.id.fragmentContainer, enableNotFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

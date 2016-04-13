@@ -18,11 +18,12 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         FirstFragment firstFragment = new FirstFragment();
-        fragmentTransaction.add(R.id.fragmentContainer,firstFragment);
+        fragmentTransaction.add(R.id.fragmentContainer,firstFragment);  // Enable Vault fragment
         fragmentTransaction.commit();
     }
 

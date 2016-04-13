@@ -50,6 +50,7 @@ public class SetPassFragment extends Fragment {
                     edit.putBoolean("first_install", false);
                     edit.commit();
                     startActivity(new Intent(getActivity(), MainActivity.class));
+                    //Main activity of the app
                     getActivity().finish();
                 }
             }
