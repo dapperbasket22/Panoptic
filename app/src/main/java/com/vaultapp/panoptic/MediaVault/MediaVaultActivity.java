@@ -70,7 +70,7 @@ public class MediaVaultActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        startService(new Intent(this, LockService.class));
+        startService(new Intent(this, LockService.class)); //Lock Screen
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
