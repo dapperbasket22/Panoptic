@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.vaultapp.panoptic.MediaVault.SplashStart;
 import com.vaultapp.panoptic.R;
 
 import java.io.File;
@@ -74,6 +75,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        //Press the keys to enter password
         switch (v.getId()){
             case R.id.back_screen :
                 enter_pin = "";
@@ -200,7 +202,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
                 pinEdit.putStringSet("vault_private",putData);
                 pinEdit.commit();
                 PackageManager p = getPackageManager();
-                ComponentName componentName = new ComponentName(this, com.vaultapp.panoptic.SplashStart.class);
+                ComponentName componentName = new ComponentName(this, SplashStart.class);
                 p.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
             }
             wrongText.setVisibility(View.INVISIBLE);
@@ -229,7 +231,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
                 pinEdit.putStringSet("vault_private",putData);
                 pinEdit.commit();
                 PackageManager p = getPackageManager();
-                ComponentName componentName = new ComponentName(this, com.vaultapp.panoptic.SplashStart.class); // activity which is first time open in manifiest file which is declare as <category android:name="android.intent.category.LAUNCHER" />
+                ComponentName componentName = new ComponentName(this, SplashStart.class); // activity which is first time open in manifiest file which is declare as <category android:name="android.intent.category.LAUNCHER" />
                 p.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             }
             wrongText.setVisibility(View.INVISIBLE);

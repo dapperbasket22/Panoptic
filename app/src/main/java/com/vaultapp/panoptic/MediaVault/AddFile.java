@@ -1,4 +1,4 @@
-package com.vaultapp.panoptic;
+package com.vaultapp.panoptic.MediaVault;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
+
+import com.vaultapp.panoptic.R;
 
 import java.io.File;
 import java.util.HashSet;
@@ -88,7 +90,7 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
                 SparseBooleanArray selected = addFile.getCheckedItemPositions();
                 //Get previously hidden files
                 Set<String> temp = addPref.getStringSet("vault_private", new HashSet<String>());
-                Boolean flag = true;
+                boolean flag = true;
                 addData = new HashSet<>();
                 for (String s : temp){
                     File f = new File(s);

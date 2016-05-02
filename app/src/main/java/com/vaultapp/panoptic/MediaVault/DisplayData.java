@@ -1,16 +1,14 @@
-package com.vaultapp.panoptic;
+package com.vaultapp.panoptic.MediaVault;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
-import android.widget.Toast;
 
 import java.io.File;
 
 public class DisplayData {
     public String name, source;
-    Boolean dir = false;
+    boolean dir = false;
     Bitmap icon;
 
     DisplayData(File F){

@@ -63,12 +63,18 @@ public class SetPassFragment extends Fragment {
         String f1 = a.getText().toString();
         String f2 = b.getText().toString();
         if(f1.length() == 4 && f2.length() == 4){
-            edit.putString("pub_pass",f1);
-            edit.putString("pri_pass",f2);
-            edit.commit();
-            return true;
+            if(f1.toString().equals(f2.toString())){
+                c.setText("Enter different keys");
+                return false;
+            }else{
+                c.setText("");
+                edit.putString("pub_pass",f1);
+                edit.putString("pri_pass",f2);
+                edit.commit();
+                return true;
+            }
         }else{
-            c.setVisibility(View.VISIBLE);
+            c.setText("Enter 4 digit key");
             return false;
         }
     }

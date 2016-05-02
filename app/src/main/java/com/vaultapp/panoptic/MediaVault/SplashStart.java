@@ -1,4 +1,4 @@
-package com.vaultapp.panoptic;
+package com.vaultapp.panoptic.MediaVault;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.vaultapp.panoptic.FirstInstall.FirstActivity;
-import com.vaultapp.panoptic.MediaVault.MediaVaultActivity;
+import com.vaultapp.panoptic.R;
 
 public class SplashStart extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class SplashStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_start);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        final Boolean val = pref.getBoolean("first_install",true);
+        final boolean val = pref.getBoolean("first_install",true);
         new Handler().postDelayed(new Runnable() {
 
 

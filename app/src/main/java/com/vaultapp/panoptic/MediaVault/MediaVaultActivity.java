@@ -24,12 +24,8 @@ import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.vaultapp.panoptic.AddFile;
-import com.vaultapp.panoptic.DisplayData;
-import com.vaultapp.panoptic.FileListAdapter;
 import com.vaultapp.panoptic.LockScreen.LockService;
 import com.vaultapp.panoptic.R;
-import com.vaultapp.panoptic.VaultSetting;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -227,7 +223,6 @@ public class MediaVaultActivity extends AppCompatActivity {
                             DisplayData d = (DisplayData) adapterVault.getItem(selected.keyAt(i));
                             adapterVault.remove(d);
                             data.remove(d.source+"/"+d.name);
-                            Toast.makeText(getContext(), d.source+"/"+d.name, Toast.LENGTH_SHORT).show();
                             // Remove file from vault
                         }
                     }

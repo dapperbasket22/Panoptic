@@ -47,7 +47,7 @@ public class LockScreenActivity extends AppCompatActivity {
     /**
      * A simple method that sets the screen to fullscreen.  It removes the Notifications bar,
      * the Actionbar and the virtual keys (if they are on the phone)
-     */
+
     public void makeFullScreen() {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -58,7 +58,7 @@ public class LockScreenActivity extends AppCompatActivity {
             this.getWindow().getDecorView()
                     .setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

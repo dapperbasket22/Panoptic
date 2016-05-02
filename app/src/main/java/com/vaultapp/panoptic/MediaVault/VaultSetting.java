@@ -1,7 +1,9 @@
-package com.vaultapp.panoptic;
+package com.vaultapp.panoptic.MediaVault;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.vaultapp.panoptic.R;
 
 public class VaultSetting extends AppCompatActivity {
     @Override
