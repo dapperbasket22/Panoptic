@@ -7,24 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#c32d63bf"
+    android:background="#3fa1b5"
     tools:context=".MediaVault.SplashStart">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:id="@+id/imageView"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/splash_icon"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Panoptic"
-        android:id="@+id/textView"
-        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

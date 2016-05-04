@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#c32d63bf"
+    android:background="@drawable/wall"
     tools:context="com.vaultapp.panoptic.LockScreen.LockScreenActivity">
 
     <ImageView
@@ -16,14 +16,7 @@
         android:layout_height="50sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@android:drawable/ic_lock_idle_lock"/>
-
-    <AnalogClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/analogClock"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/ic_unlock"/>
 
 
 </RelativeLayout>

@@ -42,10 +42,10 @@ public class MediaVaultActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    public SharedPreferences vaultPref;
-    public static SharedPreferences.Editor vaultEdit;
-    Set<String> temp;
-    public static ArrayList<String> data,image_ar,video_ar;
+    static SharedPreferences vaultPref;
+    static SharedPreferences.Editor vaultEdit;
+    static Set<String> temp;
+    static ArrayList<String> data,image_ar,video_ar;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -87,7 +87,7 @@ public class MediaVaultActivity extends AppCompatActivity {
 
     }
 
-    void updateData(){
+    static void updateData(){
         temp = vaultPref.getStringSet("vault_private",new HashSet<String>());
         data = new ArrayList<>();
         image_ar = new ArrayList<>();
@@ -233,6 +233,7 @@ public class MediaVaultActivity extends AppCompatActivity {
                     }
                     vaultEdit.putStringSet("vault_private",putData);
                     vaultEdit.commit();
+                    updateData();
                     Toast.makeText(getContext(), "Removed from vault", Toast.LENGTH_SHORT).show();
                     mode.finish(); // Action picked, so close the CAB
                     return true;

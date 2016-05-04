@@ -6,5 +6,5 @@
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText"
         android:title="Add"
-        android:icon="@android:drawable/ic_menu_add"/>
+        android:icon="@drawable/ic_plus"/>
 </menu>
