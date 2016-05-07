@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="50sp"
     tools:context="com.vaultapp.panoptic.FirstInstall.SetPassFragment">
 
 
@@ -21,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Public Pin"
         android:id="@+id/pubText"
         android:textColor="#fff"
@@ -43,7 +44,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Private Pin"
         android:id="@+id/priText"
         android:textColor="#fff"
@@ -63,8 +64,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Finish"
+        android:background="@drawable/button_style"
+        android:padding="5sp"
+        android:textColor="#fff"
         android:id="@+id/allset"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Set Password"
+        android:textSize="30sp"
+        android:textColor="#fff"
+        android:id="@+id/textew2"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

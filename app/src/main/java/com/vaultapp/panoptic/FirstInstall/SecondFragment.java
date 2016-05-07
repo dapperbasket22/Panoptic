@@ -4,6 +4,7 @@ package com.vaultapp.panoptic.FirstInstall;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -31,10 +32,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_second, container, false);
 
         Button over = (Button) view.findViewById(R.id.screenButton);
-        Button nxtlock = (Button) view.findViewById(R.id.nxtlock);
+        //Button nxtlock = (Button) view.findViewById(R.id.nxtlock);
+
+        FloatingActionButton nxtlock = (FloatingActionButton) view.findViewById(R.id.nxtlock);
+        nxtlock.setOnClickListener(this);
 
         over.setOnClickListener(this);
-        nxtlock.setOnClickListener(this);
+        //nxtlock.setOnClickListener(this);
 
         return view;
     }
@@ -47,10 +51,12 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
                 break;
             case R.id.nxtlock :
-                final EnableNotFragment enableNotFragment = new EnableNotFragment();
+                /*final EnableNotFragment enableNotFragment = new EnableNotFragment();
+                final FragmentTransaction transaction = getFragmentManager().beginTransaction();*/
+                final SetPassFragment setPassFragment = new SetPassFragment();
                 final FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 //Enable notification fragment
-                transaction.replace(R.id.fragmentContainer, enableNotFragment);
+                transaction.replace(((ViewGroup)(getView().getParent())).getId(), setPassFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;

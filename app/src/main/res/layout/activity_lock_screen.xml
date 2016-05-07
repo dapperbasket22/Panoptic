@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/wall"
+    android:background="@drawable/wall2"
     tools:context="com.vaultapp.panoptic.LockScreen.LockScreenActivity">
 
     <ImageView
@@ -17,6 +17,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_unlock"/>
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock"
+        android:textColor="#fff"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

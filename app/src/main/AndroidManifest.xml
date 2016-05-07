@@ -62,7 +62,6 @@
             android:name=".MediaVault.MediaVaultActivity"
             android:label="@string/title_activity_media_vault"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MediaVault.AddMediaActivity" />
     </application>
 
 </manifest>

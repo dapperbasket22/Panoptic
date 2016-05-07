@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@drawable/wall2"
     tools:context="com.vaultapp.panoptic.LockScreen.PinActivity">
     <TextView
         android:layout_width="match_parent"
@@ -14,6 +12,7 @@
         android:gravity="center"
         android:id="@+id/wrong_pin"
         android:layout_above="@+id/pin_container"
+        android:textColor="#fff"
         android:layout_marginBottom="15sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:visibility="invisible"
@@ -25,6 +24,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:id="@+id/pin_container"
+        android:textColor="#fff"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:cursorVisible="false"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -40,56 +41,92 @@
             <Button
                 android:id="@+id/button1"
                 android:layout_weight="1"
-                android:text="1"/>
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="1"
+                android:textColor="#fff"/>
             <Button
                 android:id="@+id/button2"
                 android:layout_weight="1"
-                android:text="2"/>
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="2"
+                android:textColor="#fff"/>
             <Button
                 android:id="@+id/button3"
                 android:layout_weight="1"
+                android:textColor="#fff"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="3"/>
         </TableRow>
         <TableRow>
             <Button
                 android:id="@+id/button4"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="4"/>
             <Button
                 android:id="@+id/button5"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="5"/>
             <Button
                 android:id="@+id/button6"
                 android:layout_weight="1"
+                android:textColor="#fff"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="6"/>
         </TableRow>
         <TableRow>
             <Button
                 android:id="@+id/button7"
                 android:layout_weight="1"
+                android:textColor="#fff"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="7"/>
             <Button
                 android:id="@+id/button8"
                 android:layout_weight="1"
+                android:textColor="#fff"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="8"/>
             <Button
                 android:id="@+id/button9"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="9"/>
         </TableRow>
         <TableRow>
             <Button
                 android:id="@+id/back_screen"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Back"/>
             <Button
                 android:id="@+id/button0"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="0"/>
             <Button
                 android:id="@+id/clear_button"
+                android:textColor="#fff"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Clear"/>
         </TableRow>
     </TableLayout>

@@ -2,14 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.vaultapp.panoptic.FirstInstall.FirstFragment">
 
-    <Button
+    <!--<Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enable Vault"
         android:id="@+id/enableButton"
-        android:layout_gravity="center" />
+        android:layout_gravity="center" />-->
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/enableButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_next" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="\nWelcome"
+        android:textColor="#fff"
+        android:id="@+id/textiew3"
+        android:layout_gravity="center_horizontal|top" />
+
+    <ImageSwitcher
+        android:layout_width="400sp"
+        android:layout_height="300sp"
+        android:id="@+id/imageSwitcher"
+        android:layout_gravity="center" />
 
 </FrameLayout>
