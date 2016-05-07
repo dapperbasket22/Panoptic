@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vaultapp.panoptic.LockScreen.LockService;
@@ -144,6 +145,7 @@ public class MediaVaultActivity extends AppCompatActivity {
          */
         FileListAdapter adapterVault;
         GridView imgList;
+        TextView nullText;
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
@@ -166,6 +168,9 @@ public class MediaVaultActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_image_vault, container, false);
 
+            nullText = (TextView) rootView.findViewById(R.id.nullText);
+            nullText.setVisibility(View.VISIBLE);
+
             imgList = (GridView) rootView.findViewById(R.id.imageGridView);
             imgList.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
             imgList.setMultiChoiceModeListener(this);
@@ -182,13 +187,13 @@ public class MediaVaultActivity extends AppCompatActivity {
         void fill(){
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 0 :
-                    adapterVault = new FileListAdapter(getContext(),image_ar);
+                    adapterVault = new FileListAdapter(getContext(),image_ar,nullText);
                     break;
                 case 1 :
-                    adapterVault = new FileListAdapter(getContext(),video_ar);
+                    adapterVault = new FileListAdapter(getContext(),video_ar,nullText);
                     break;
                 case 2 :
-                    adapterVault = new FileListAdapter(getContext(),data);
+                    adapterVault = new FileListAdapter(getContext(),data,nullText);
                     break;
                 default : break;
             }

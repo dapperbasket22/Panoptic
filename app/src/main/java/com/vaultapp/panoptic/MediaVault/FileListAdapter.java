@@ -26,13 +26,19 @@ public class FileListAdapter extends BaseAdapter {
             }
         }
     }
-    public FileListAdapter(Context context, ArrayList<String> list){
+
+
+    public FileListAdapter(Context context, ArrayList<String> list,TextView txt){
         fileData = new ArrayList<>();
         this.context = context;
         for(String s : list){
             File f = new File(s);
             fileData.add(new DisplayData(f));
         }
+        if(list.size()==0)
+            txt.setVisibility(View.VISIBLE);
+        else
+            txt.setVisibility(View.GONE);
     }
 
     @Override
