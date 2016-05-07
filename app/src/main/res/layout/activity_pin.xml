@@ -14,7 +14,7 @@
         android:layout_above="@+id/pin_container"
         android:textColor="#fff"
         android:layout_marginBottom="15sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible"
         android:text="Wrong Pin"/>
 
@@ -130,5 +130,24 @@
                 android:text="Clear"/>
         </TableRow>
     </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter Password"
+        android:textColor="#fff"
+        android:id="@+id/textView"
+        android:layout_above="@+id/wrong_pin"
+        android:layout_centerHorizontal="true" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock2"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
