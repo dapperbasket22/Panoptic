@@ -7,4 +7,5 @@
     <string name="title_activity_media_vault">Panoptic</string>
     <string name="section_format">Hello World</string>
     <string name="addfile">Add to vault</string>
+    <string name="enb_string">Enable</string>
 </resources>

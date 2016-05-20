@@ -35,6 +35,7 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_file);
+
         //Initialize
         addFile = (GridView) findViewById(R.id.add_file);
         base = Environment.getExternalStorageDirectory();
@@ -136,7 +137,7 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
         if (base.isDirectory()){
             fillList(base);
         } else{
-            Toast.makeText(this,"File", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Long press to select", Toast.LENGTH_SHORT).show();
         }
 
     }

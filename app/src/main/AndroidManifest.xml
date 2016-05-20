@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MediaVault.AddFile"
+            android:parentActivityName=".MediaVault.MediaVaultActivity"
             android:label="@string/addfile" />
         <activity
             android:name=".LockScreen.LockScreenActivity"

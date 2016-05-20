@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+        android:title="Enable Vault"
+        android:key="pref_key_enable_vault">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="enb_vault"
+            android:title="@string/enb_string"/>
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="Lock Screen Password"
+        android:dependency="enb_vault"
         android:key="pref_key_storage_settings">
         <EditTextPreference
             android:key="pub_pass"
-            android:summary="Public Password"
             android:title="Public Password"
+            android:inputType="numberPassword"
             android:defaultValue="1234" />
 
         <EditTextPreference
             android:key="pri_pass"
-            android:summary="Private Password"
             android:title="Private Password"
-            android:defaultValue="1234" />
+            android:inputType="numberPassword"
+            android:defaultValue="4321" />
     </PreferenceCategory>
 
 </PreferenceScreen>

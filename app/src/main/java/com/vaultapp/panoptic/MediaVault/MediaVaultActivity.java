@@ -67,13 +67,14 @@ public class MediaVaultActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        startService(new Intent(this, LockService.class)); //Lock Screen
+        vaultPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        vaultEdit = vaultPref.edit();
+
+        lockit();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        vaultPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        vaultEdit = vaultPref.edit();
         updateData();
 
         final Intent intent = new Intent(this,AddFile.class);
@@ -106,8 +107,15 @@ public class MediaVaultActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        lockit();
         updateData();
         super.onResume();
+    }
+
+    void lockit(){
+        if(vaultPref.getBoolean(("enb_vault"),true))
+            startService(new Intent(this, LockService.class)); //Lock Screen
+        else stopService(new Intent(this, LockService.class)); //Disable Lock Screen
     }
 
     @Override

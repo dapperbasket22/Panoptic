@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/media_icon"
         android:src="@mipmap/ic_logo"
+        android:scaleType="fitXY"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
