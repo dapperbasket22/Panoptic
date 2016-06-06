@@ -22,6 +22,10 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+// This file has been modified for the primary case.
+// That is, the app is only accessible to private user.
+// If this condition is falsified, uncommented the flag related code.
+
 public class AddFile extends AppCompatActivity implements AdapterView.OnItemClickListener,
         AbsListView.MultiChoiceModeListener {
     GridView addFile;
@@ -91,13 +95,13 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
                 SparseBooleanArray selected = addFile.getCheckedItemPositions();
                 //Get previously hidden files
                 Set<String> temp = addPref.getStringSet("vault_private", new HashSet<String>());
-                boolean flag = true;
+                //boolean flag = true;
                 addData = new HashSet<>();
                 for (String s : temp){
-                    File f = new File(s);
+                    /*File f = new File(s);
                     if (!f.isHidden()){
                         flag=false;
-                    }
+                    }*/
                     addData.add(s);
                 }
                 // Update hidden files
@@ -105,19 +109,20 @@ public class AddFile extends AppCompatActivity implements AdapterView.OnItemClic
                     if(selected.valueAt(i)){
                         DisplayData d = (DisplayData) adapterAdd.getItem(selected.keyAt(i));
                         File f = new File(d.source,d.name);
-                        if(flag){
+                        /*if(flag){
                             File x = new File(d.source,"."+d.name);
                             f.renameTo(x);
                             addData.add(x.toString());
-                        } else {
+                        } else {*/
                             addData.add(f.toString());
-                        }
+                       // }
                     }
                 }
                 addEdit.putStringSet("vault_private", addData);
                 addEdit.commit();
                 Toast.makeText(this,"Added to vault",Toast.LENGTH_SHORT).show();
                 mode.finish(); // Action picked, so close the CAB
+                fillList(base);
                 return true;
             default:
                 return false;
